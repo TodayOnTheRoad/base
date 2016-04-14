@@ -9,7 +9,9 @@
 
 #import "NSDate+Category.h"
 #import "NSString+Category.h"
-#import "NSString+CachePath.h"
 #import "UIColor+Category.h"
 #import "UIView+Category.h"
 #import "UIViewController+Category.h"
+#import "NSArray+Category.h"
+#import "NSDictionary+Category.h"
+#import "NSMutableArray+Category.h"

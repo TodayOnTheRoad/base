@@ -9,6 +9,15 @@
 #import "NSString+Category.h"
 
 @implementation NSString (Category)
+#pragma mark - 构造方法
++ (instancetype)stringWithDate:(NSDate *)date
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-mm-dd  HH:mm"];
+    NSString *dateString = [formatter stringFromDate:date];
+    return dateString;
+}
+#pragma mark - 字符串size 
 - (CGSize)mySizeWithFont:(UIFont *)font {
     NSDictionary *attributes = @{NSFontAttributeName: font};
     return [self sizeWithAttributes:attributes];
@@ -28,6 +37,25 @@
     CGSize resultSize = [self mySizeWithFont:font constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)];
     return resultSize;
 }
+#pragma mark - 沙盒路径
++ (NSString *)documentsPath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsPath = [paths firstObject];
+    return documentsPath;
+}
++ (NSString *)cachePath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [paths firstObject];
+    return cachePath;
+}
++ (NSString *)tmpPath
+{
+    NSString *tmpPath = NSTemporaryDirectory();
+    return tmpPath;
+}
+#pragma mark - 其他
 -(BOOL)isContent
 {
     if (self == nil) {

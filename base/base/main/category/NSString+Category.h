@@ -9,6 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @interface NSString (Category)
+#pragma mark - 构造方法
+/**
+ *
+ *  @param date 时间对象
+ *
+ *  @return 时间字符串 "yyyy-mm-dd  HH:mm"
+ */
++ (instancetype)stringWithDate:(NSDate *)date;
+#pragma mark - 字符串size 
 /**
  *  计算字符串size
  *
@@ -40,5 +49,25 @@
  *
  *  @return yes是有
  */
+#pragma mark - 沙盒路径
+/**
+ *  documents路径
+ *
+ *  @return documents路径
+ */
++ (NSString *)documentsPath;
+/**
+ *  cache路径
+ *
+ *  @return cache 路径
+ */
++ (NSString *)cachePath;
+/**
+ *  tmp路径
+ *
+ *  @return tmp路径
+ */
++ (NSString *)tmpPath;
+#pragma mark - 其他
 - (BOOL)isContent;
 @end
