@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "Masonry.h"
-static NSUInteger kMinTurn = 0;
+static NSUInteger kMinTurn = 1;
 static CGFloat itemWidth = 33;
 static CGFloat itemHeight = 62;
 @interface CheckInDaysView:UIImageView
@@ -64,19 +64,19 @@ static CGFloat itemHeight = 62;
     
     for (int i = 0; i < _numberOfLine; i++) {
         CALayer *scrollLayer = [_scrollLayerArray objectAtIndex:i];
-        
-        for (int j = 0; j < _iconCount; j++) {
+        NSInteger total = - (i + kMinTurn + 3) * _iconCount;
+        for (int j = 0; j > total; j--) {
             CATextLayer *textLayer = [[CATextLayer alloc] init];
-            textLayer.frame = CGRectMake(0, j * itemHeight, itemWidth, itemHeight);
+            NSInteger offsetYUnit = j + _iconCount;
+            textLayer.frame = CGRectMake(0, offsetYUnit * itemHeight + itemHeight / 4 - 3, itemWidth, itemHeight);
             textLayer.backgroundColor = [UIColor clearColor].CGColor;
             textLayer.fontSize = 30;
             textLayer.foregroundColor = [UIColor blackColor].CGColor;
             textLayer.alignmentMode = @"center";
-            [textLayer setString:[_sourceArray objectAtIndex:j]];
+            [textLayer setString:[_sourceArray objectAtIndex:abs(j) % _iconCount]];
             textLayer.contentsScale = [UIScreen mainScreen].scale;
             [scrollLayer addSublayer:textLayer];
         }
-        NSLog(@"hehe");
 
     }
 }
@@ -100,14 +100,14 @@ static CGFloat itemHeight = 62;
                 NSUInteger currentIndex = [[_currentArray objectAtIndex:i] integerValue];
                 
                 for (int j = 0; j < _iconCount * (kMinTurn + i) + resultIndex - currentIndex; j++) {
-                    CATextLayer *iconLayer = (CATextLayer *)[scrollLayer.sublayers objectAtIndex:j % 10];
+                    CATextLayer *iconLayer = (CATextLayer *)[scrollLayer.sublayers objectAtIndex:j];
                     [toBeDeletedLayerArray addObject:iconLayer];
                 }
                 
                 for (CATextLayer *toBeDeletedLayer in toBeDeletedLayerArray) {
                     // use initWithLayer does not work
                     CATextLayer *toBeAddedLayer = [CATextLayer layer];
-                    toBeAddedLayer.frame = CGRectMake(0, 0, itemWidth, itemHeight);
+                    toBeAddedLayer.frame = toBeDeletedLayer.frame;
                     toBeAddedLayer.backgroundColor = toBeDeletedLayer.backgroundColor;
                     toBeAddedLayer.fontSize = toBeDeletedLayer.fontSize;
                     toBeAddedLayer.foregroundColor = toBeDeletedLayer.foregroundColor;
@@ -135,12 +135,12 @@ static CGFloat itemHeight = 62;
             NSUInteger resultIndex = [[_resultArray objectAtIndex:i] integerValue];
             NSUInteger currentIndex = [[_currentArray objectAtIndex:i] integerValue];
             
-            NSUInteger howManyUnit = (i + kMinTurn) * _iconCount + resultIndex - currentIndex;
-            CGFloat slideY = howManyUnit * scrollLayer.frame.size.height;
+            NSUInteger howManyUnit =  (i + kMinTurn) * _iconCount +resultIndex - currentIndex;
+            CGFloat slideY = howManyUnit * itemHeight;
             
             CABasicAnimation *slideAnimation = [CABasicAnimation animationWithKeyPath:keyPath];
             slideAnimation.fillMode = kCAFillModeForwards;
-            slideAnimation.duration = howManyUnit * 1;
+            slideAnimation.duration = howManyUnit * 0.14;
             slideAnimation.toValue = [NSNumber numberWithFloat:scrollLayer.position.y + slideY];
             slideAnimation.removedOnCompletion = NO;
             
@@ -154,6 +154,7 @@ static CGFloat itemHeight = 62;
 
 - (void)setDaysString:(NSString *)string
 {
+    [_resultArray removeAllObjects];
     NSString *newstring = [NSString stringWithFormat:@"0000%@",string];
     for (int i = 0; i < _numberOfLine; i++) {
         NSString *string = [newstring substringWithRange:NSMakeRange(newstring.length - (_numberOfLine - i), 1)];
@@ -184,7 +185,10 @@ static CGFloat itemHeight = 62;
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [view setDaysString:@"123"];
+    NSMutableArray *array = [NSMutableArray arrayWithObjects:@"123",@"2345",@"2456",@"5678", nil];
+    NSString *resultString = array[rand()%4];
+    NSLog(@"%@",resultString);
+    [view setDaysString:resultString];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
