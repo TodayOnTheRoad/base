@@ -8,16 +8,21 @@
 
 #import "ViewController.h"
 #import "Masonry.h"
+static NSUInteger kMinTurn = 0;
+static CGFloat itemWidth = 33;
+static CGFloat itemHeight = 62;
 @interface CheckInDaysView:UIImageView
-
 @end
 
 @implementation CheckInDaysView
 {
-    UILabel  *_firstLabel;
-    UILabel  *_secondLabel;
-    UILabel  *_thirdLabel;
-    UILabel  *_lastLabel;
+    NSMutableArray  *_scrollLayerArray;
+    NSMutableArray *_sourceArray;
+    NSUInteger _iconCount;
+    NSUInteger _numberOfLine;
+    
+    NSMutableArray  *_resultArray;
+    NSMutableArray *_currentArray;
     
 }
 
@@ -26,58 +31,135 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.image = [UIImage imageNamed:@"CheckInDaysBackground"];
-        _firstLabel = [[UILabel alloc]init];
-        _firstLabel.backgroundColor = [UIColor clearColor];
-        _firstLabel.font = [UIFont systemFontOfSize:40];
-        [self addSubview:_firstLabel];
-        
-        _secondLabel = [[UILabel alloc]init];
-        _secondLabel.backgroundColor = [UIColor clearColor];
-        _secondLabel.font = [UIFont systemFontOfSize:40];
-        [self addSubview:_secondLabel];
-        
-        _thirdLabel = [[UILabel alloc]init];
-        _thirdLabel.backgroundColor = [UIColor clearColor];
-        _thirdLabel.font = [UIFont systemFontOfSize:40];
-        [self addSubview:_thirdLabel];
-        
-        _lastLabel = [[UILabel alloc]init];
-        _lastLabel.backgroundColor = [UIColor clearColor];
-        _lastLabel.font = [UIFont systemFontOfSize:40];
-        [self addSubview:_lastLabel];
+        [self loadData];
     }
-    [self setupConstraints];
     return self;
 }
-- (void)setupConstraints
+- (void)loadData
 {
-    static CGFloat leftMargin = 58;
-    static CGFloat bottomMargin = -44;
-    static CGFloat everyAdd = 50;
-    [_firstLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_bottom).offset(bottomMargin);
-        make.centerX.mas_equalTo(self.mas_left).offset(leftMargin);
-    }];
-    [_secondLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_bottom).offset(bottomMargin);
-        make.centerX.mas_equalTo(self.mas_left).offset(leftMargin + everyAdd);
-    }];
-    [_thirdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_bottom).offset(bottomMargin);
-        make.centerX.mas_equalTo(self.mas_left).offset(leftMargin + 2 * everyAdd);
-    }];
-    [_lastLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_bottom).offset(bottomMargin);
-        make.centerX.mas_equalTo(self.mas_left).offset(leftMargin + 3 *everyAdd);
-    }];
+    _numberOfLine = 4;
+    CGFloat itemSpacing = 18;
+    _iconCount = 10;
+    _scrollLayerArray = [NSMutableArray array];
+    _sourceArray = [NSMutableArray array];
+    for (int i = 0; i < _iconCount; i++) {
+        NSString *string = [NSString stringWithFormat:@"%d",i];
+        [_sourceArray addObject:string];
+    }
+    _currentArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0", nil];
+    _resultArray = [NSMutableArray array];
+    for (int i = 0; i < _numberOfLine; i++) {
+        CALayer *containLayer = [[CALayer alloc]init];
+        containLayer.frame = CGRectMake(i * (itemWidth + itemSpacing) + 40, 52, itemWidth, itemHeight);
+        containLayer.masksToBounds = YES;
+        [self.layer addSublayer:containLayer];
+        
+        CALayer *scrollLayer = [[CALayer alloc] init];
+        scrollLayer.frame = CGRectMake(0, 0, itemWidth, itemHeight * _iconCount);
+        [containLayer addSublayer:scrollLayer];
+        
+        [_scrollLayerArray addObject:scrollLayer];
+    }
+    
+    
+    for (int i = 0; i < _numberOfLine; i++) {
+        CALayer *scrollLayer = [_scrollLayerArray objectAtIndex:i];
+        
+        for (int j = 0; j < _iconCount; j++) {
+            CATextLayer *textLayer = [[CATextLayer alloc] init];
+            textLayer.frame = CGRectMake(0, j * itemHeight, itemWidth, itemHeight);
+            textLayer.backgroundColor = [UIColor clearColor].CGColor;
+            textLayer.fontSize = 30;
+            textLayer.foregroundColor = [UIColor blackColor].CGColor;
+            textLayer.alignmentMode = @"center";
+            [textLayer setString:[_sourceArray objectAtIndex:j]];
+            textLayer.contentsScale = [UIScreen mainScreen].scale;
+            [scrollLayer addSublayer:textLayer];
+        }
+        NSLog(@"hehe");
+
+    }
 }
+- (void)startSliding {
+    
+        __block NSMutableArray *completePositionArray = [NSMutableArray array];
+        
+        [CATransaction begin];
+        
+        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+        [CATransaction setDisableActions:YES];
+        [CATransaction setCompletionBlock:^{
+            for (int i = 0; i < [_scrollLayerArray count]; i++) {
+                CALayer *scrollLayer = [_scrollLayerArray objectAtIndex:i];
+                
+                scrollLayer.position = CGPointMake(scrollLayer.position.x, ((NSNumber *)[completePositionArray objectAtIndex:i]).floatValue);
+                
+                NSMutableArray *toBeDeletedLayerArray = [NSMutableArray array];
+                
+                NSUInteger resultIndex = [[_resultArray objectAtIndex:i] integerValue];
+                NSUInteger currentIndex = [[_currentArray objectAtIndex:i] integerValue];
+                
+                for (int j = 0; j < _iconCount * (kMinTurn + i) + resultIndex - currentIndex; j++) {
+                    CATextLayer *iconLayer = (CATextLayer *)[scrollLayer.sublayers objectAtIndex:j % 10];
+                    [toBeDeletedLayerArray addObject:iconLayer];
+                }
+                
+                for (CATextLayer *toBeDeletedLayer in toBeDeletedLayerArray) {
+                    // use initWithLayer does not work
+                    CATextLayer *toBeAddedLayer = [CATextLayer layer];
+                    toBeAddedLayer.frame = CGRectMake(0, 0, itemWidth, itemHeight);
+                    toBeAddedLayer.backgroundColor = toBeDeletedLayer.backgroundColor;
+                    toBeAddedLayer.fontSize = toBeDeletedLayer.fontSize;
+                    toBeAddedLayer.foregroundColor = toBeDeletedLayer.foregroundColor;
+                    toBeAddedLayer.alignmentMode = toBeDeletedLayer.alignmentMode;
+                    [toBeAddedLayer setString:toBeDeletedLayer.string];
+                    
+                    CGFloat shiftY = _iconCount * toBeAddedLayer.frame.size.height * (kMinTurn + i + 3);
+                    toBeAddedLayer.position = CGPointMake(toBeAddedLayer.position.x, toBeAddedLayer.position.y - shiftY);
+                    
+                    [toBeDeletedLayer removeFromSuperlayer];
+                    [scrollLayer addSublayer:toBeAddedLayer];
+                }
+            }
+            
+            [_currentArray removeAllObjects];
+            [_currentArray addObjectsFromArray:_resultArray];
+            completePositionArray = [NSMutableArray array];
+        }];
+        
+        static NSString * const keyPath = @"position.y";
+        
+        for (int i = 0; i < [_scrollLayerArray count]; i++) {
+            CALayer *scrollLayer = [_scrollLayerArray objectAtIndex:i];
+            
+            NSUInteger resultIndex = [[_resultArray objectAtIndex:i] integerValue];
+            NSUInteger currentIndex = [[_currentArray objectAtIndex:i] integerValue];
+            
+            NSUInteger howManyUnit = (i + kMinTurn) * _iconCount + resultIndex - currentIndex;
+            CGFloat slideY = howManyUnit * scrollLayer.frame.size.height;
+            
+            CABasicAnimation *slideAnimation = [CABasicAnimation animationWithKeyPath:keyPath];
+            slideAnimation.fillMode = kCAFillModeForwards;
+            slideAnimation.duration = howManyUnit * 1;
+            slideAnimation.toValue = [NSNumber numberWithFloat:scrollLayer.position.y + slideY];
+            slideAnimation.removedOnCompletion = NO;
+            
+            [scrollLayer addAnimation:slideAnimation forKey:@"slideAnimation"];
+            
+            [completePositionArray addObject:slideAnimation.toValue];
+        }
+        
+        [CATransaction commit];
+}
+
 - (void)setDaysString:(NSString *)string
 {
     NSString *newstring = [NSString stringWithFormat:@"0000%@",string];
-    _firstLabel.text  = [newstring substringWithRange:NSMakeRange(newstring.length - 4, 1)];
-    _secondLabel.text = [newstring substringWithRange:NSMakeRange(newstring.length - 3, 1)];
-    _thirdLabel.text  = [newstring substringWithRange:NSMakeRange(newstring.length - 2, 1)];
-    _lastLabel.text   = [newstring substringWithRange:NSMakeRange(newstring.length - 1, 1)];
+    for (int i = 0; i < _numberOfLine; i++) {
+        NSString *string = [newstring substringWithRange:NSMakeRange(newstring.length - (_numberOfLine - i), 1)];
+        [_resultArray addObject:string];
+    }
+    [self startSliding];
     
 }
 @end
@@ -87,18 +169,23 @@
 @end
 
 @implementation ViewController
+{
+    CheckInDaysView *view;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CheckInDaysView *view = [[CheckInDaysView alloc]initWithFrame:CGRectZero];
+    view = [[CheckInDaysView alloc]initWithFrame:CGRectZero];
     CGRect frame = view.frame;
     frame.size = view.image.size;
     view.frame = frame;
-    [view setDaysString:@"123"];
     [self.view addSubview:view];
-    // Do any additional setup after loading the view, typically from a nib.
+    
 }
-
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [view setDaysString:@"123"];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
