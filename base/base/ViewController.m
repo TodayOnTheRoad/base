@@ -171,24 +171,27 @@ static CGFloat itemHeight = 62;
 
 @implementation ViewController
 {
-    CheckInDaysView *view;
+    UIView *_redView;
+    UIImageView  *_imageView;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    view = [[CheckInDaysView alloc]initWithFrame:CGRectZero];
-    CGRect frame = view.frame;
-    frame.size = view.image.size;
-    view.frame = frame;
-    [self.view addSubview:view];
+    _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(50, 50, 266, 50)];
+    UIImage *image= [UIImage imageNamed:@"CheckInDaysBackground"];
+//    CGFloat scale = image.scale;
+//    CGImageRef cgImage = image.CGImage;
+//    CGImageRef newCgImage = CGImageCreateWithImageInRect(cgImage, CGRectMake(0, 0, 532, 100));
+//    _imageView.layer.contentsScale = 2.0f;
+    _imageView.image = [image subImageWithRect:CGRectMake(0, 0, 266, 50)];
+    
+    
+    [self.view addSubview:_imageView];
     
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    NSMutableArray *array = [NSMutableArray arrayWithObjects:@"123",@"2345",@"2456",@"5678", nil];
-    NSString *resultString = array[rand()%4];
-    NSLog(@"%@",resultString);
-    [view setDaysString:resultString];
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

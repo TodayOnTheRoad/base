@@ -10,3 +10,6 @@
 #define PrefixHeader_pch
 #endif /* PrefixHeader_pch */
 #import "Categories.h"
+
+
+#define CGRECT_TEST CGRectMake(100, 100, 100, 100)

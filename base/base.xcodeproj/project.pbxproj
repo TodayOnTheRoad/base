@@ -15,6 +15,7 @@
 		9BA72E4E1CBDFA9900E3BA61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BA72E4C1CBDFA9900E3BA61 /* LaunchScreen.storyboard */; };
 		9BA72E731CBE225200E3BA61 /* AppCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA72E6A1CBE225200E3BA61 /* AppCacheManager.m */; };
 		9BA72E741CBE225200E3BA61 /* Untilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA72E6C1CBE225200E3BA61 /* Untilities.m */; };
+		9BAA77471CD30421007C9ABD /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA77461CD30421007C9ABD /* UIImage+Category.m */; };
 		9BE690BD1CBF7E4F0018A056 /* NSArray+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE690AE1CBF7E4F0018A056 /* NSArray+Category.m */; };
 		9BE690BE1CBF7E4F0018A056 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE690B01CBF7E4F0018A056 /* NSDate+Category.m */; };
 		9BE690BF1CBF7E4F0018A056 /* NSDictionary+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE690B21CBF7E4F0018A056 /* NSDictionary+Category.m */; };
@@ -53,6 +54,8 @@
 		9BA72E6B1CBE225200E3BA61 /* Untilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Untilities.h; sourceTree = "<group>"; };
 		9BA72E6C1CBE225200E3BA61 /* Untilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Untilities.m; sourceTree = "<group>"; };
 		9BA72E751CBE229900E3BA61 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
+		9BAA77451CD30421007C9ABD /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
+		9BAA77461CD30421007C9ABD /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
 		9BE690AC1CBF7E4F0018A056 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		9BE690AD1CBF7E4F0018A056 /* NSArray+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Category.h"; sourceTree = "<group>"; };
 		9BE690AE1CBF7E4F0018A056 /* NSArray+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Category.m"; sourceTree = "<group>"; };
@@ -195,6 +198,8 @@
 				9BE690BA1CBF7E4F0018A056 /* UIView+Category.m */,
 				9BE690BB1CBF7E4F0018A056 /* UIViewController+Category.h */,
 				9BE690BC1CBF7E4F0018A056 /* UIViewController+Category.m */,
+				9BAA77451CD30421007C9ABD /* UIImage+Category.h */,
+				9BAA77461CD30421007C9ABD /* UIImage+Category.m */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				9BE690C31CBF7E4F0018A056 /* UIView+Category.m in Sources */,
 				9BE690C21CBF7E4F0018A056 /* UIColor+Category.m in Sources */,
 				9BFD51001CC638A700BD3533 /* MASConstraint.m in Sources */,
+				9BAA77471CD30421007C9ABD /* UIImage+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

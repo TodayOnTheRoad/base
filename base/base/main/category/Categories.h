@@ -15,3 +15,4 @@
 #import "NSArray+Category.h"
 #import "NSDictionary+Category.h"
 #import "NSMutableArray+Category.h"
+#import "UIImage+Category.h"
