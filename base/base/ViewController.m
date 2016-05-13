@@ -8,189 +8,151 @@
 
 #import "ViewController.h"
 #import "Masonry.h"
-static NSUInteger kMinTurn = 1;
-static CGFloat itemWidth = 33;
-static CGFloat itemHeight = 62;
-@interface CheckInDaysView:UIImageView
-@end
-
-@implementation CheckInDaysView
+#import <GLKit/GLKit.h>
+#define LIGHT_DIRECTION 0, 1, -0.5
+#define AMBIENT_LIGHT 0.5
+CGAffineTransform CGAffineTransformMakeShear(CGFloat x,CGFloat y)
 {
-    NSMutableArray  *_scrollLayerArray;
-    NSMutableArray *_sourceArray;
-    NSUInteger _iconCount;
-    NSUInteger _numberOfLine;
-    
-    NSMutableArray  *_resultArray;
-    NSMutableArray *_currentArray;
-    
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    transform.c = -x;
+    transform.b = y;
+    return transform;
 }
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.image = [UIImage imageNamed:@"CheckInDaysBackground"];
-        [self loadData];
-    }
-    return self;
-}
-- (void)loadData
-{
-    _numberOfLine = 4;
-    CGFloat itemSpacing = 18;
-    _iconCount = 10;
-    _scrollLayerArray = [NSMutableArray array];
-    _sourceArray = [NSMutableArray array];
-    for (int i = 0; i < _iconCount; i++) {
-        NSString *string = [NSString stringWithFormat:@"%d",i];
-        [_sourceArray addObject:string];
-    }
-    _currentArray = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0", nil];
-    _resultArray = [NSMutableArray array];
-    for (int i = 0; i < _numberOfLine; i++) {
-        CALayer *containLayer = [[CALayer alloc]init];
-        containLayer.frame = CGRectMake(i * (itemWidth + itemSpacing) + 40, 52, itemWidth, itemHeight);
-        containLayer.masksToBounds = YES;
-        [self.layer addSublayer:containLayer];
-        
-        CALayer *scrollLayer = [[CALayer alloc] init];
-        scrollLayer.frame = CGRectMake(0, 0, itemWidth, itemHeight * _iconCount);
-        [containLayer addSublayer:scrollLayer];
-        
-        [_scrollLayerArray addObject:scrollLayer];
-    }
-    
-    
-    for (int i = 0; i < _numberOfLine; i++) {
-        CALayer *scrollLayer = [_scrollLayerArray objectAtIndex:i];
-        NSInteger total = - (i + kMinTurn + 3) * _iconCount;
-        for (int j = 0; j > total; j--) {
-            CATextLayer *textLayer = [[CATextLayer alloc] init];
-            NSInteger offsetYUnit = j + _iconCount;
-            textLayer.frame = CGRectMake(0, offsetYUnit * itemHeight + itemHeight / 4 - 3, itemWidth, itemHeight);
-            textLayer.backgroundColor = [UIColor clearColor].CGColor;
-            textLayer.fontSize = 30;
-            textLayer.foregroundColor = [UIColor blackColor].CGColor;
-            textLayer.alignmentMode = @"center";
-            [textLayer setString:[_sourceArray objectAtIndex:abs(j) % _iconCount]];
-            textLayer.contentsScale = [UIScreen mainScreen].scale;
-            [scrollLayer addSublayer:textLayer];
-        }
-
-    }
-}
-- (void)startSliding {
-    
-        __block NSMutableArray *completePositionArray = [NSMutableArray array];
-        
-        [CATransaction begin];
-        
-        [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-        [CATransaction setDisableActions:YES];
-        [CATransaction setCompletionBlock:^{
-            for (int i = 0; i < [_scrollLayerArray count]; i++) {
-                CALayer *scrollLayer = [_scrollLayerArray objectAtIndex:i];
-                
-                scrollLayer.position = CGPointMake(scrollLayer.position.x, ((NSNumber *)[completePositionArray objectAtIndex:i]).floatValue);
-                
-                NSMutableArray *toBeDeletedLayerArray = [NSMutableArray array];
-                
-                NSUInteger resultIndex = [[_resultArray objectAtIndex:i] integerValue];
-                NSUInteger currentIndex = [[_currentArray objectAtIndex:i] integerValue];
-                
-                for (int j = 0; j < _iconCount * (kMinTurn + i) + resultIndex - currentIndex; j++) {
-                    CATextLayer *iconLayer = (CATextLayer *)[scrollLayer.sublayers objectAtIndex:j];
-                    [toBeDeletedLayerArray addObject:iconLayer];
-                }
-                
-                for (CATextLayer *toBeDeletedLayer in toBeDeletedLayerArray) {
-                    // use initWithLayer does not work
-                    CATextLayer *toBeAddedLayer = [CATextLayer layer];
-                    toBeAddedLayer.frame = toBeDeletedLayer.frame;
-                    toBeAddedLayer.backgroundColor = toBeDeletedLayer.backgroundColor;
-                    toBeAddedLayer.fontSize = toBeDeletedLayer.fontSize;
-                    toBeAddedLayer.foregroundColor = toBeDeletedLayer.foregroundColor;
-                    toBeAddedLayer.alignmentMode = toBeDeletedLayer.alignmentMode;
-                    [toBeAddedLayer setString:toBeDeletedLayer.string];
-                    
-                    CGFloat shiftY = _iconCount * toBeAddedLayer.frame.size.height * (kMinTurn + i + 3);
-                    toBeAddedLayer.position = CGPointMake(toBeAddedLayer.position.x, toBeAddedLayer.position.y - shiftY);
-                    
-                    [toBeDeletedLayer removeFromSuperlayer];
-                    [scrollLayer addSublayer:toBeAddedLayer];
-                }
-            }
-            
-            [_currentArray removeAllObjects];
-            [_currentArray addObjectsFromArray:_resultArray];
-            completePositionArray = [NSMutableArray array];
-        }];
-        
-        static NSString * const keyPath = @"position.y";
-        
-        for (int i = 0; i < [_scrollLayerArray count]; i++) {
-            CALayer *scrollLayer = [_scrollLayerArray objectAtIndex:i];
-            
-            NSUInteger resultIndex = [[_resultArray objectAtIndex:i] integerValue];
-            NSUInteger currentIndex = [[_currentArray objectAtIndex:i] integerValue];
-            
-            NSUInteger howManyUnit =  (i + kMinTurn) * _iconCount +resultIndex - currentIndex;
-            CGFloat slideY = howManyUnit * itemHeight;
-            
-            CABasicAnimation *slideAnimation = [CABasicAnimation animationWithKeyPath:keyPath];
-            slideAnimation.fillMode = kCAFillModeForwards;
-            slideAnimation.duration = howManyUnit * 0.14;
-            slideAnimation.toValue = [NSNumber numberWithFloat:scrollLayer.position.y + slideY];
-            slideAnimation.removedOnCompletion = NO;
-            
-            [scrollLayer addAnimation:slideAnimation forKey:@"slideAnimation"];
-            
-            [completePositionArray addObject:slideAnimation.toValue];
-        }
-        
-        [CATransaction commit];
-}
-
-- (void)setDaysString:(NSString *)string
-{
-    [_resultArray removeAllObjects];
-    NSString *newstring = [NSString stringWithFormat:@"0000%@",string];
-    for (int i = 0; i < _numberOfLine; i++) {
-        NSString *string = [newstring substringWithRange:NSMakeRange(newstring.length - (_numberOfLine - i), 1)];
-        [_resultArray addObject:string];
-    }
-    [self startSliding];
-    
-}
-@end
-
 @interface ViewController ()
-
+@property(nonatomic,strong)NSMutableArray *viewArray;
 @end
 
 @implementation ViewController
 {
-    UIView *_redView;
-    UIImageView  *_imageView;
+//    CALayer *_layer;
+//    
+//    CALayer *_outLayer;
+//    CALayer *_innerLayer;
+    UIView  *_contentView;
 }
-
+-(NSMutableArray *)viewArray
+{
+    if (_viewArray == nil) {
+        _viewArray = [NSMutableArray array];
+    }
+    return _viewArray;
+}
+- (void)addToViewArray
+{
+    for (int i = 0; i < 6; i++) {
+        UIView *view = [[UIView alloc]init];
+        view.size = CGSizeMake(200, 200);
+        view.backgroundColor = [UIColor whiteColor];
+        
+        UILabel *label = [[UILabel alloc]init];
+        label.textColor = [UIColor greenColor];
+        label.textAlignment = NSTextAlignmentCenter;
+        label.frame = CGRectMake(0, 0, 200, 200);
+        label.font = [UIFont systemFontOfSize:40];
+        label.text = [NSString stringWithFormat:@"%d",i + 1];
+        [view addSubview:label];
+        [self.viewArray addObject:view];
+    }
+}
+- (void)applyLightingToFace:(CALayer *)face
+{
+    //add lighting layer
+    CALayer *layer = [CALayer layer];
+    layer.frame = face.bounds;
+    [face addSublayer:layer];
+    //convert the face transform to matrix
+    //(GLKMatrix4 has the same structure as CATransform3D)
+    CATransform3D transform = face.transform;
+    GLKMatrix4 matrix4 = *(GLKMatrix4 *)&transform;
+    GLKMatrix3 matrix3 = GLKMatrix4GetMatrix3(matrix4);
+    //get face normal
+    GLKVector3 normal = GLKVector3Make(0, 0, 1);
+    normal = GLKMatrix3MultiplyVector3(matrix3, normal);
+    normal = GLKVector3Normalize(normal);
+    //get dot product with light direction
+    GLKVector3 light = GLKVector3Normalize(GLKVector3Make(LIGHT_DIRECTION));
+    float dotProduct = GLKVector3DotProduct(light, normal);
+    //set lighting layer opacity
+    CGFloat shadow = 1 + dotProduct - AMBIENT_LIGHT;
+    UIColor *color = [UIColor colorWithWhite:0 alpha:shadow];
+    layer.backgroundColor = color.CGColor;
+}
+- (void)addFace:(NSInteger)index withTransform:(CATransform3D)transform
+{
+    //get the face view and add it to the container
+    UIView *face = self.viewArray[index];
+    [_contentView addSubview:face];
+    //center the face view within the container
+    CGSize containerSize = _contentView.bounds.size;
+    face.center = CGPointMake(containerSize.width / 2.0, containerSize.height / 2.0);
+    // apply the transform
+    face.layer.transform = transform;
+    [self applyLightingToFace:face.layer];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(50, 50, 266, 50)];
-    UIImage *image= [UIImage imageNamed:@"CheckInDaysBackground"];
-//    CGFloat scale = image.scale;
-//    CGImageRef cgImage = image.CGImage;
-//    CGImageRef newCgImage = CGImageCreateWithImageInRect(cgImage, CGRectMake(0, 0, 532, 100));
-//    _imageView.layer.contentsScale = 2.0f;
-    _imageView.image = [image subImageWithRect:CGRectMake(0, 0, 266, 50)];
+    self.view.backgroundColor = [UIColor grayColor];
+    _contentView = [[UIView alloc]init];
+    _contentView.size = CGSizeMake(100, 100);
+    _contentView.center = self.view.center;
+    [self.view addSubview:_contentView];
     
+    [self addToViewArray];
+    CATransform3D perspective = CATransform3DIdentity;
+    perspective.m34 = -1.0 / 500.0;
+    _contentView.layer.sublayerTransform = perspective;
+    //add cube face 1
+    CATransform3D transform = CATransform3DMakeTranslation(0, 0, 100);
+    [self addFace:0 withTransform:transform];
+    //add cube face 2
+    transform = CATransform3DMakeTranslation(100, 0, 0);
+    transform = CATransform3DRotate(transform, M_PI_2, 0, 1, 0);
+    [self addFace:1 withTransform:transform];
+    //add cube face 3
+    transform = CATransform3DMakeTranslation(0, -100, 0);
+    transform = CATransform3DRotate(transform, M_PI_2, 1, 0, 0);
+    [self addFace:2 withTransform:transform];
+    //add cube face 4
+    transform = CATransform3DMakeTranslation(0, 100, 0);
+    transform = CATransform3DRotate(transform, -M_PI_2, 1, 0, 0);
+    [self addFace:3 withTransform:transform];
+    //add cube face 5
+    transform = CATransform3DMakeTranslation(-100, 0, 0);
+    transform = CATransform3DRotate(transform, -M_PI_2, 0, 1, 0);
+    [self addFace:4 withTransform:transform];
+    //add cube face 6
+    transform = CATransform3DMakeTranslation(0, 0, -100);
+    transform = CATransform3DRotate(transform, M_PI, 0, 1, 0);
+    [self addFace:5 withTransform:transform];
     
-    [self.view addSubview:_imageView];
     
 }
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+//    CGAffineTransform tranform = CGAffineTransformMakeRotation(PI(45));
+//    _layer.affineTransform = tranform;
+//    CGAffineTransform tranform = CGAffineTransformIdentity;
+//    tranform = CGAffineTransformRotate(tranform, PI(45));
+//    tranform = CGAffineTransformScale(tranform, 0.5, 0.5);
+//    tranform = CGAffineTransformTranslate(tranform, 0, -300);
+//    tranform = CGAffineTransformMakeShear(1, 0);
+//    _layer.affineTransform = tranform;
+//    CATransform3D transform = _layer.transform;
+//    transform.m34 = -1.0 /500;
+//    transform = CATransform3DMakeRotation(PI(180), 0, 1, 0);
+//    _layer.transform = transform;
+//    CATransform3D outer = CATransform3DMakeRotation(PI(45), 0, 1, 0);
+//    _outLayer.transform = outer;
+//    
+//    CATransform3D inner = CATransform3DMakeRotation(PI(-45), 0, 1, 0);
+//    _innerLayer.transform = inner;
+    
+    
+    CATransform3D perspective = CATransform3DIdentity;
+    perspective.m34 = -1.0 / 500.0;
+    perspective = CATransform3DRotate(perspective, PI(-45), 1, 0, 0);
+    perspective = CATransform3DRotate(perspective, PI(-45), 0, 1, 0);
+    _contentView.layer.sublayerTransform = perspective;
     
 }
 - (void)didReceiveMemoryWarning {

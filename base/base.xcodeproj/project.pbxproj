@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B1B5A671CE5AB08009BB06D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1B5A661CE5AB08009BB06D /* GLKit.framework */; };
+		9B84F1741CE475D90072EF18 /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B84F1731CE475D90072EF18 /* girl.png */; };
 		9BA72E401CBDFA9900E3BA61 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA72E3F1CBDFA9900E3BA61 /* main.m */; };
 		9BA72E431CBDFA9900E3BA61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA72E421CBDFA9900E3BA61 /* AppDelegate.m */; };
 		9BA72E461CBDFA9900E3BA61 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA72E451CBDFA9900E3BA61 /* ViewController.m */; };
@@ -34,11 +36,11 @@
 		9BFD51061CC638A700BD3533 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD50F91CC638A700BD3533 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		9BFD51071CC638A700BD3533 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD50FB1CC638A700BD3533 /* View+MASAdditions.m */; };
 		9BFD51081CC638A700BD3533 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BFD50FE1CC638A700BD3533 /* ViewController+MASAdditions.m */; };
-		9BFD510B1CC638E500BD3533 /* CheckInDaysBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BFD51091CC638E500BD3533 /* CheckInDaysBackground@2x.png */; };
-		9BFD510C1CC638E500BD3533 /* CheckInDaysBackground@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BFD510A1CC638E500BD3533 /* CheckInDaysBackground@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B1B5A661CE5AB08009BB06D /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		9B84F1731CE475D90072EF18 /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
 		9BA72E3B1CBDFA9900E3BA61 /* base.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = base.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BA72E3F1CBDFA9900E3BA61 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9BA72E411CBDFA9900E3BA61 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -98,8 +100,6 @@
 		9BFD50FC1CC638A700BD3533 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		9BFD50FD1CC638A700BD3533 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		9BFD50FE1CC638A700BD3533 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		9BFD51091CC638E500BD3533 /* CheckInDaysBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckInDaysBackground@2x.png"; sourceTree = "<group>"; };
-		9BFD510A1CC638E500BD3533 /* CheckInDaysBackground@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CheckInDaysBackground@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B1B5A671CE5AB08009BB06D /* GLKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +117,7 @@
 		9BA72E321CBDFA9900E3BA61 = {
 			isa = PBXGroup;
 			children = (
+				9B1B5A661CE5AB08009BB06D /* GLKit.framework */,
 				9BA72E3D1CBDFA9900E3BA61 /* base */,
 				9BA72E3C1CBDFA9900E3BA61 /* Products */,
 			);
@@ -150,8 +152,7 @@
 		9BA72E3E1CBDFA9900E3BA61 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9BFD51091CC638E500BD3533 /* CheckInDaysBackground@2x.png */,
-				9BFD510A1CC638E500BD3533 /* CheckInDaysBackground@3x.png */,
+				9B84F1731CE475D90072EF18 /* girl.png */,
 				9BA72E3F1CBDFA9900E3BA61 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -302,10 +303,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BA72E4E1CBDFA9900E3BA61 /* LaunchScreen.storyboard in Resources */,
-				9BFD510C1CC638E500BD3533 /* CheckInDaysBackground@3x.png in Resources */,
+				9B84F1741CE475D90072EF18 /* girl.png in Resources */,
 				9BA72E4B1CBDFA9900E3BA61 /* Assets.xcassets in Resources */,
 				9BA72E491CBDFA9900E3BA61 /* Main.storyboard in Resources */,
-				9BFD510B1CC638E500BD3533 /* CheckInDaysBackground@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
