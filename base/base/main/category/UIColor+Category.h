@@ -18,4 +18,5 @@
 
 + (UIColor*)hex:(NSInteger)hex;
 
++ (UIColor *)randomColor;
 @end

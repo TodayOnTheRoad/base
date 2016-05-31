@@ -103,5 +103,13 @@
     CGFloat B = (hex) & 0xFF;
     return [self R:R G:G B:B];
 }
-
++ (UIColor *)randomColor
+{
+    CGFloat red = arc4random()/(CGFloat)INT_MAX;
+    CGFloat green = arc4random()/(CGFloat)INT_MAX;
+    CGFloat blue = arc4random()/(CGFloat)INT_MAX;
+    CGFloat alpha = arc4random()/(CGFloat)INT_MAX;
+    
+    return [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+}
 @end

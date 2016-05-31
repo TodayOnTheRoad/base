@@ -71,4 +71,9 @@
     }
     return YES;
 }
+
+- (instancetype)leachStringUseString:(NSString *)string
+{
+     return [[self componentsSeparatedByString:string] componentsJoinedByString:@""];
+}
 @end

@@ -70,4 +70,5 @@
 + (NSString *)tmpPath;
 #pragma mark - 其他
 - (BOOL)isContent;
+- (instancetype)leachStringUseString:(NSString *)string;
 @end
