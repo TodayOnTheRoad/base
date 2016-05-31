@@ -10,6 +10,7 @@
 #define PrefixHeader_pch
 #endif /* PrefixHeader_pch */
 #import "Categories.h"
+#import "LogDefine.h"
 
 #define CGRECT_TEST CGRectMake(100, 100, 100, 100)
 #define PI(corner) M_PI * (corner/180.0)

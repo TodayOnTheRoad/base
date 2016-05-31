@@ -39,6 +39,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B031F141CFD904400C1A3A1 /* LogDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogDefine.h; sourceTree = "<group>"; };
 		9B1B5A661CE5AB08009BB06D /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9B84F1731CE475D90072EF18 /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
 		9BA72E3B1CBDFA9900E3BA61 /* base.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = base.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +115,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B031F131CFD901B00C1A3A1 /* define */ = {
+			isa = PBXGroup;
+			children = (
+				9B031F141CFD904400C1A3A1 /* LogDefine.h */,
+			);
+			path = define;
+			sourceTree = "<group>";
+		};
 		9BA72E321CBDFA9900E3BA61 = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +170,7 @@
 		9BA72E591CBE225200E3BA61 /* main */ = {
 			isa = PBXGroup;
 			children = (
+				9B031F131CFD901B00C1A3A1 /* define */,
 				9BE690AB1CBF7E4F0018A056 /* category */,
 				9BA72E751CBE229900E3BA61 /* PrefixHeader.pch */,
 				9BA72E681CBE225200E3BA61 /* Untilities */,
