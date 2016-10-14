@@ -63,16 +63,16 @@
 }
 #pragma mark - 其他
 //设置部分圆角
-- (void)setCornerRadius:(CGFloat)cornerRadius byRoundingCorners:(UIRectCorner)corners
-{
-    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
-    maskPath.lineWidth = 2;
-    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
-    maskLayer.frame = self.bounds;
-    maskLayer.path = maskPath.CGPath;
-    self.layer.mask = maskLayer;
-    self.layer.masksToBounds = YES;
-}
+//- (void)setCornerRadius:(CGFloat)cornerRadius byRoundingCorners:(UIRectCorner)corners
+//{
+//    UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:corners cornerRadii:CGSizeMake(cornerRadius, cornerRadius)];
+//    maskPath.lineWidth = 2;
+//    CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
+//    maskLayer.frame = self.bounds;
+//    maskLayer.path = maskPath.CGPath;
+//    self.layer.mask = maskLayer;
+//    self.layer.masksToBounds = YES;
+//}
 //- (void)setBorderLineWithBorderLinetype:(ViewBorderLinetype)type
 //{
 //    if (!type || type == ViewBorderLinetypeNone) {

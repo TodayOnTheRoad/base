@@ -9,10 +9,5 @@
 #import "UIViewController+Category.h"
 
 @implementation UIViewController (Category)
--(void)viewDidLoad
-{
-    NSLog(@"我打开了  ;%@",self);
-    
-    
-}
+
 @end

@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-typedef NS_ENUM(NSInteger, ViewBorderLinetype) {
-    ViewBorderLinetypeNone   = 0,
-    ViewBorderLinetypeTop    = 1,
-    ViewBorderLinetypeLeft   = 2,
-    ViewBorderLinetypeBottom = 3,
-    ViewBorderLinetypeRight  = 4,
-};
+//typedef NS_ENUM(NSInteger, ViewBorderLinetype) {
+//    ViewBorderLinetypeNone   = 0,
+//    ViewBorderLinetypeTop    = 1,
+//    ViewBorderLinetypeLeft   = 2,
+//    ViewBorderLinetypeBottom = 3,
+//    ViewBorderLinetypeRight  = 4,
+//};
 @interface UIView (Category)
 #pragma mark - size相关
 @property(nonatomic,assign)CGFloat width;
@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, ViewBorderLinetype) {
  *  @param corners      设置圆角的部分
  *  @注意此方法用自动布局的话，只能写在自定义view的LayoutSubviews 或者控制器的viewdidLayOutSubviews
  */
-- (void)setCornerRadius:(CGFloat)cornerRadius byRoundingCorners:(UIRectCorner)corners;
+//- (void)setCornerRadius:(CGFloat)cornerRadius byRoundingCorners:(UIRectCorner)corners;
 
 //- (void)setBorderLineWithBorderLinetype:(ViewBorderLinetype)type;
 @end
