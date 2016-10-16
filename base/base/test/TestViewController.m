@@ -44,7 +44,6 @@
     TestString *string1 = [[TestString alloc] init];
     string1.number = [NSNumber numberWithInt:10];
     NSLog(@"%p",string1);
-    CGFloat f1 = 0.5;
     [string1 test];
     void (^myblock)() = ^(){
         NSLog(@"我在这里");

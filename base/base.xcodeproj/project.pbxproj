@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05AC0E3D1DB391A700BDDDED /* CTFrameParserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AC0E3C1DB391A700BDDDED /* CTFrameParserConfig.m */; };
+		05AC0E401DB395E900BDDDED /* CTFrameParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AC0E3F1DB395E900BDDDED /* CTFrameParser.m */; };
+		05AC0E431DB3960E00BDDDED /* CoreTextData.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AC0E421DB3960E00BDDDED /* CoreTextData.m */; };
+		05AC0E461DB3A4BD00BDDDED /* CTDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AC0E451DB3A4BD00BDDDED /* CTDisplayView.m */; };
 		9B1B5A671CE5AB08009BB06D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1B5A661CE5AB08009BB06D /* GLKit.framework */; };
 		9B2235741DA9E7340037E745 /* CoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2235731DA9E7340037E745 /* CoreTextViewController.m */; };
-		9B2235771DA9F0330037E745 /* CTDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2235761DA9F0330037E745 /* CTDisplayView.m */; };
 		9B2CB0CE1DAF414500D85818 /* DownLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2CB0CD1DAF414500D85818 /* DownLoadViewController.m */; };
 		9B2CB0D51DAF561000D85818 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2CB0D41DAF561000D85818 /* TestViewController.m */; };
 		9B2CB0D81DAF56A300D85818 /* TestString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2CB0D71DAF56A300D85818 /* TestString.m */; };
@@ -43,12 +46,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05AC0E3B1DB391A700BDDDED /* CTFrameParserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParserConfig.h; sourceTree = "<group>"; };
+		05AC0E3C1DB391A700BDDDED /* CTFrameParserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParserConfig.m; sourceTree = "<group>"; };
+		05AC0E3E1DB395E900BDDDED /* CTFrameParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameParser.h; sourceTree = "<group>"; };
+		05AC0E3F1DB395E900BDDDED /* CTFrameParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameParser.m; sourceTree = "<group>"; };
+		05AC0E411DB3960E00BDDDED /* CoreTextData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextData.h; sourceTree = "<group>"; };
+		05AC0E421DB3960E00BDDDED /* CoreTextData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextData.m; sourceTree = "<group>"; };
+		05AC0E441DB3A4BD00BDDDED /* CTDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDisplayView.h; sourceTree = "<group>"; };
+		05AC0E451DB3A4BD00BDDDED /* CTDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDisplayView.m; sourceTree = "<group>"; };
 		9B031F141CFD904400C1A3A1 /* LogDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogDefine.h; sourceTree = "<group>"; };
 		9B1B5A661CE5AB08009BB06D /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9B2235721DA9E7340037E745 /* CoreTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextViewController.h; sourceTree = "<group>"; };
 		9B2235731DA9E7340037E745 /* CoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextViewController.m; sourceTree = "<group>"; };
-		9B2235751DA9F0330037E745 /* CTDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTDisplayView.h; sourceTree = "<group>"; };
-		9B2235761DA9F0330037E745 /* CTDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTDisplayView.m; sourceTree = "<group>"; };
 		9B2CB0CC1DAF414500D85818 /* DownLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadViewController.h; sourceTree = "<group>"; };
 		9B2CB0CD1DAF414500D85818 /* DownLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadViewController.m; sourceTree = "<group>"; };
 		9B2CB0D31DAF561000D85818 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
@@ -128,6 +137,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05AC0E3A1DB3915900BDDDED /* CoreTextParser */ = {
+			isa = PBXGroup;
+			children = (
+				05AC0E441DB3A4BD00BDDDED /* CTDisplayView.h */,
+				05AC0E451DB3A4BD00BDDDED /* CTDisplayView.m */,
+				05AC0E3B1DB391A700BDDDED /* CTFrameParserConfig.h */,
+				05AC0E3C1DB391A700BDDDED /* CTFrameParserConfig.m */,
+				05AC0E3E1DB395E900BDDDED /* CTFrameParser.h */,
+				05AC0E3F1DB395E900BDDDED /* CTFrameParser.m */,
+				05AC0E411DB3960E00BDDDED /* CoreTextData.h */,
+				05AC0E421DB3960E00BDDDED /* CoreTextData.m */,
+			);
+			path = CoreTextParser;
+			sourceTree = "<group>";
+		};
 		9B031F131CFD901B00C1A3A1 /* define */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,10 +163,9 @@
 		9B2235711DA9E7060037E745 /* coreText */ = {
 			isa = PBXGroup;
 			children = (
+				05AC0E3A1DB3915900BDDDED /* CoreTextParser */,
 				9B2235721DA9E7340037E745 /* CoreTextViewController.h */,
 				9B2235731DA9E7340037E745 /* CoreTextViewController.m */,
-				9B2235751DA9F0330037E745 /* CTDisplayView.h */,
-				9B2235761DA9F0330037E745 /* CTDisplayView.m */,
 			);
 			path = coreText;
 			sourceTree = "<group>";
@@ -377,6 +400,7 @@
 				9BFD51061CC638A700BD3533 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				9BA72E741CBE225200E3BA61 /* Untilities.m in Sources */,
 				9BFD51041CC638A700BD3533 /* MASViewConstraint.m in Sources */,
+				05AC0E401DB395E900BDDDED /* CTFrameParser.m in Sources */,
 				9BE690C11CBF7E4F0018A056 /* NSString+Category.m in Sources */,
 				9BFD51071CC638A700BD3533 /* View+MASAdditions.m in Sources */,
 				9BE690BF1CBF7E4F0018A056 /* NSDictionary+Category.m in Sources */,
@@ -387,13 +411,15 @@
 				9BA72E431CBDFA9900E3BA61 /* AppDelegate.m in Sources */,
 				9BFD51081CC638A700BD3533 /* ViewController+MASAdditions.m in Sources */,
 				9BE690BD1CBF7E4F0018A056 /* NSArray+Category.m in Sources */,
+				05AC0E431DB3960E00BDDDED /* CoreTextData.m in Sources */,
+				05AC0E461DB3A4BD00BDDDED /* CTDisplayView.m in Sources */,
 				9BFD51051CC638A700BD3533 /* NSArray+MASAdditions.m in Sources */,
 				9BA72E401CBDFA9900E3BA61 /* main.m in Sources */,
 				9BFD51021CC638A700BD3533 /* MASLayoutConstraint.m in Sources */,
 				9B2CB0D81DAF56A300D85818 /* TestString.m in Sources */,
-				9B2235771DA9F0330037E745 /* CTDisplayView.m in Sources */,
 				9BFD50FF1CC638A700BD3533 /* MASCompositeConstraint.m in Sources */,
 				9BE690C41CBF7E4F0018A056 /* UIViewController+Category.m in Sources */,
+				05AC0E3D1DB391A700BDDDED /* CTFrameParserConfig.m in Sources */,
 				9B2235741DA9E7340037E745 /* CoreTextViewController.m in Sources */,
 				9B2CB0CE1DAF414500D85818 /* DownLoadViewController.m in Sources */,
 				9BE690C31CBF7E4F0018A056 /* UIView+Category.m in Sources */,
