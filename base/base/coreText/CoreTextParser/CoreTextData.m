@@ -14,7 +14,7 @@
         if (_ctFrame != nil) {
             CFRelease(_ctFrame);
         }
-        CFRetain(_ctFrame);
+        CFRetain(ctFrame);
         _ctFrame = ctFrame;
     }
 }

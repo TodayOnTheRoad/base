@@ -12,5 +12,7 @@
 
 @interface CTFrameParser : NSObject
 
-+ (CoreTextData *)parserContent:(NSString *)content config:(CTFrameParserConfig *)config;
++ (CoreTextData *)parserString:(NSString *)string config:(CTFrameParserConfig *)config;
+
++ (CoreTextData *)parserAttributeString:(NSAttributedString *)attributeString restrictWidth:(CGFloat)restrictWidth;
 @end

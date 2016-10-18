@@ -11,13 +11,27 @@
 #import "CTFrameParserConfig.h"
 
 @implementation CTFrameParser
-+ (CoreTextData *)parserContent:(NSString *)content config:(CTFrameParserConfig *)config {
-    NSAttributedString *attr = [self attributedStringWithString:content config:config];
++ (CoreTextData *)parserString:(NSString *)string config:(CTFrameParserConfig *)config {
+    NSAttributedString *attr = [self attributedStringWithString:string config:config];
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attr);
     CGSize restrictSize = CGSizeMake(config.width, CGFLOAT_MAX);
     CGSize coreTextSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, attr.length), nil, restrictSize, nil);
     CGFloat coreTextHeight = coreTextSize.height;
-    CTFrameRef frame = [self creatFrameWithFramesetter:framesetter config:config height:coreTextHeight];
+    CTFrameRef frame = [self creatFrameWithFramesetter:framesetter restrictWidth:config.width height:coreTextHeight];
+    CoreTextData *data = [CoreTextData new];
+    data.ctFrame = frame;
+    data.height = coreTextHeight;
+    CFRelease(framesetter);
+    CFRelease(frame);
+    return data;
+}
+
++ (CoreTextData *)parserAttributeString:(NSAttributedString *)attributeString restrictWidth:(CGFloat)restrictWidth {
+    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attributeString);
+    CGSize restrictSize = CGSizeMake(restrictWidth, CGFLOAT_MAX);
+    CGSize coreTextSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, CFRangeMake(0, attributeString.length), nil, restrictSize, nil);
+    CGFloat coreTextHeight = coreTextSize.height;
+    CTFrameRef frame = [self creatFrameWithFramesetter:framesetter restrictWidth:restrictWidth height:coreTextHeight];
     CoreTextData *data = [CoreTextData new];
     data.ctFrame = frame;
     data.height = coreTextHeight;
@@ -36,9 +50,9 @@
     return [[NSAttributedString alloc]initWithAttributedString:attr];
 }
 
-+ (CTFrameRef )creatFrameWithFramesetter:(CTFramesetterRef)framersetter config:(CTFrameParserConfig *)config height:(CGFloat)height {
++ (CTFrameRef )creatFrameWithFramesetter:(CTFramesetterRef)framersetter restrictWidth:(CGFloat)restrictWidth height:(CGFloat)height {
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, CGRectMake(0, 0, config.width, height));
+    CGPathAddRect(path, NULL, CGRectMake(0, 0, restrictWidth, height));
     CTFrameRef frame = CTFramesetterCreateFrame(framersetter, CFRangeMake(0, 0), path, NULL);
     CFRelease(path);
     return frame;

@@ -30,8 +30,15 @@
     config.lineSpace = 20;
     config.width = 100;
     
-    CoreTextData *data = [CTFrameParser parserContent:@"哈哈哈哈哈哈撒好大声大声的撒打算的打算打算的" config:config];
+//    CoreTextData *data = [CTFrameParser parserString:@"哈哈哈哈哈哈撒好大声大声的撒打算的打算打算的" config:config];
+    NSString *string = @"哈哈哈哈哈哈撒好大声大声的撒打算的打算打算的";
+    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:string];
+    [attr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
+    
+    
+    CoreTextData *data = [CTFrameParser parserAttributeString:attr restrictWidth:100];
     _displayView.data = data;
+    _displayView.height = data.height;
     
     [self.view addSubview:_displayView];
 }
