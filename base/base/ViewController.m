@@ -64,6 +64,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *dict = self.resourceArray[indexPath.row];
     cell.textLabel.text = dict[@"text"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

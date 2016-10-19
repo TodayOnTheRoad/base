@@ -13,6 +13,7 @@
 		05AC0E461DB3A4BD00BDDDED /* CTDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 05AC0E451DB3A4BD00BDDDED /* CTDisplayView.m */; };
 		9B1B5A671CE5AB08009BB06D /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B1B5A661CE5AB08009BB06D /* GLKit.framework */; };
 		9B2235741DA9E7340037E745 /* CoreTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2235731DA9E7340037E745 /* CoreTextViewController.m */; };
+		9B24560A1DB5D64000544C73 /* TestCoreText.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B2456091DB5D64000544C73 /* TestCoreText.json */; };
 		9B2CB0CE1DAF414500D85818 /* DownLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2CB0CD1DAF414500D85818 /* DownLoadViewController.m */; };
 		9B2CB0D51DAF561000D85818 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2CB0D41DAF561000D85818 /* TestViewController.m */; };
 		9B2CB0D81DAF56A300D85818 /* TestString.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B2CB0D71DAF56A300D85818 /* TestString.m */; };
@@ -25,6 +26,7 @@
 		9BA72E731CBE225200E3BA61 /* AppCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA72E6A1CBE225200E3BA61 /* AppCacheManager.m */; };
 		9BA72E741CBE225200E3BA61 /* Untilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BA72E6C1CBE225200E3BA61 /* Untilities.m */; };
 		9BAA77471CD30421007C9ABD /* UIImage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BAA77461CD30421007C9ABD /* UIImage+Category.m */; };
+		9BDA43CE1DB76465002A1859 /* CoreImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BDA43CD1DB76465002A1859 /* CoreImageData.m */; };
 		9BE690BD1CBF7E4F0018A056 /* NSArray+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE690AE1CBF7E4F0018A056 /* NSArray+Category.m */; };
 		9BE690BE1CBF7E4F0018A056 /* NSDate+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE690B01CBF7E4F0018A056 /* NSDate+Category.m */; };
 		9BE690BF1CBF7E4F0018A056 /* NSDictionary+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9BE690B21CBF7E4F0018A056 /* NSDictionary+Category.m */; };
@@ -58,6 +60,7 @@
 		9B1B5A661CE5AB08009BB06D /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		9B2235721DA9E7340037E745 /* CoreTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreTextViewController.h; sourceTree = "<group>"; };
 		9B2235731DA9E7340037E745 /* CoreTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreTextViewController.m; sourceTree = "<group>"; };
+		9B2456091DB5D64000544C73 /* TestCoreText.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestCoreText.json; sourceTree = "<group>"; };
 		9B2CB0CC1DAF414500D85818 /* DownLoadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadViewController.h; sourceTree = "<group>"; };
 		9B2CB0CD1DAF414500D85818 /* DownLoadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadViewController.m; sourceTree = "<group>"; };
 		9B2CB0D31DAF561000D85818 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
@@ -81,6 +84,8 @@
 		9BA72E751CBE229900E3BA61 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PrefixHeader.pch; path = ../PrefixHeader.pch; sourceTree = "<group>"; };
 		9BAA77451CD30421007C9ABD /* UIImage+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Category.h"; sourceTree = "<group>"; };
 		9BAA77461CD30421007C9ABD /* UIImage+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Category.m"; sourceTree = "<group>"; };
+		9BDA43CC1DB76465002A1859 /* CoreImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreImageData.h; sourceTree = "<group>"; };
+		9BDA43CD1DB76465002A1859 /* CoreImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreImageData.m; sourceTree = "<group>"; };
 		9BE690AC1CBF7E4F0018A056 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
 		9BE690AD1CBF7E4F0018A056 /* NSArray+Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Category.h"; sourceTree = "<group>"; };
 		9BE690AE1CBF7E4F0018A056 /* NSArray+Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Category.m"; sourceTree = "<group>"; };
@@ -148,6 +153,8 @@
 				05AC0E3F1DB395E900BDDDED /* CTFrameParser.m */,
 				05AC0E411DB3960E00BDDDED /* CoreTextData.h */,
 				05AC0E421DB3960E00BDDDED /* CoreTextData.m */,
+				9BDA43CC1DB76465002A1859 /* CoreImageData.h */,
+				9BDA43CD1DB76465002A1859 /* CoreImageData.m */,
 			);
 			path = CoreTextParser;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 		9BA72E3E1CBDFA9900E3BA61 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9B2456091DB5D64000544C73 /* TestCoreText.json */,
 				9B84F1731CE475D90072EF18 /* girl.png */,
 				9BA72E3F1CBDFA9900E3BA61 /* main.m */,
 			);
@@ -383,6 +391,7 @@
 			files = (
 				9BA72E4E1CBDFA9900E3BA61 /* LaunchScreen.storyboard in Resources */,
 				9B84F1741CE475D90072EF18 /* girl.png in Resources */,
+				9B24560A1DB5D64000544C73 /* TestCoreText.json in Resources */,
 				9BA72E4B1CBDFA9900E3BA61 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,6 +433,7 @@
 				9B2CB0CE1DAF414500D85818 /* DownLoadViewController.m in Sources */,
 				9BE690C31CBF7E4F0018A056 /* UIView+Category.m in Sources */,
 				9BE690C21CBF7E4F0018A056 /* UIColor+Category.m in Sources */,
+				9BDA43CE1DB76465002A1859 /* CoreImageData.m in Sources */,
 				9BFD51001CC638A700BD3533 /* MASConstraint.m in Sources */,
 				9BAA77471CD30421007C9ABD /* UIImage+Category.m in Sources */,
 			);

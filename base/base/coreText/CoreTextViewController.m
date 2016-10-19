@@ -22,21 +22,24 @@
     self.navigationItem.title = @"CoreText";
     
     
-    _displayView = [[CTDisplayView alloc]initWithFrame:CGRECT_TEST];
+    _displayView = [[CTDisplayView alloc]initWithFrame:CGRectMake(100, 100, 200, 0)];
     _displayView.backgroundColor = [UIColor whiteColor];
     
-    CTFrameParserConfig *config = [CTFrameParserConfig new];
-    config.textColor = [UIColor redColor];
-    config.lineSpace = 20;
-    config.width = 100;
+//    CTFrameParserConfig *config = [CTFrameParserConfig new];
+//    config.textColor = [UIColor greenColor];
+//    config.lineSpace = 20;
+//    config.width = 100;
+//    
+////    CoreTextData *data = [CTFrameParser parserString:@"哈哈哈哈哈哈撒好大声大声的撒打算的打算打算的" config:config];
+//    NSString *string = @"哈哈哈哈哈哈撒好大声大声的撒打算的打算打算的";
+//    NSDictionary *dict = [CTFrameParser attributesWithConfig:config];
+//    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:string attributes:dict];
+//    [attr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
+//    CoreTextData *data = [CTFrameParser parserAttributeString:attr restrictWidth:100];    
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"TestCoreText" ofType:@"json"];
+    CoreTextData *data = [CTFrameParser attributeStringWithJsonFilePath:path restrictWidth:200];
     
-//    CoreTextData *data = [CTFrameParser parserString:@"哈哈哈哈哈哈撒好大声大声的撒打算的打算打算的" config:config];
-    NSString *string = @"哈哈哈哈哈哈撒好大声大声的撒打算的打算打算的";
-    NSMutableAttributedString *attr = [[NSMutableAttributedString alloc]initWithString:string];
-    [attr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
-    
-    
-    CoreTextData *data = [CTFrameParser parserAttributeString:attr restrictWidth:100];
+
     _displayView.data = data;
     _displayView.height = data.height;
     
